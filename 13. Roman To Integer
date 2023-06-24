@@ -1,0 +1,13 @@
+class Solution(object):
+    def romanToInt(self, s):
+        romans_values = {'I':1, 'V':5, 'X':10, 'L':50, 'C':100, 'D':500, 'M':1000}
+        total = romans_values[s[0]]
+        for i in range(1,len(s)):
+            #detect if previous value is smaller than current
+            if romans_values[s[i-1]] < romans_values[s[i]]:
+                #subtract 2x because you added it previously
+                total -= 2*romans_values[s[i-1]]
+                total += romans_values[s[i]]
+            else:
+                total += romans_values[s[i]]
+        return total
