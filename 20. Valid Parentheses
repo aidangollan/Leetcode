@@ -1,0 +1,37 @@
+#link to problem https://leetcode.com/problems/valid-parentheses/description/
+
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        check if empty or odd (can't pass)
+        loop through string
+        have dict of key value pairs for closed brackets to open brackets
+        have list of closed brackets
+        have list to represent stack
+        check if bracket is open, if so add it to stack
+        else check if stack is non-empty and last element is a match
+        if so return true, else return false 
+        once done if stack is empty return true
+        """
+        if len(s) == 0 or len(s) % 2 != 0:
+            return False
+        bracket_dict = {')':'(', ']':'[','}':'{'}
+        closed_brackets = [')',']','}']
+        stack = []
+        for bracket in s:
+            #check if bracket is open
+            if bracket not in closed_brackets:
+                stack.append(bracket)
+            else:
+                try:
+                #if you can't access stack[-1], must be invalid
+                    if bracket_dict[bracket] == stack[-1]:
+                        stack.pop()
+                    else:
+                        return False
+                except:
+                    return False
+        #stack must be empty to pass
+        return len(stack) == 0
