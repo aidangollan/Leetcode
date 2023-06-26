@@ -1,0 +1,18 @@
+#link to the problem https://leetcode.com/problems/single-number/description/
+
+class Solution(object):
+    def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        nums_dict = {}
+        for i in nums:
+            try:     
+                nums_dict[i] += 1
+            except:
+                nums_dict[i] = 1
+        
+        for i in nums:
+            if nums_dict[i] == 1:
+                return i
