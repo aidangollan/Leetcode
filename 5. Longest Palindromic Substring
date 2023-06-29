@@ -1,0 +1,17 @@
+#link to problem https://leetcode.com/problems/longest-palindromic-substring/description/
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        if len(s) == 1 or self.is_palendrome(s):
+            return s
+        scan_len = len(s)
+        while scan_len >= 0:
+            for i in range(len(s) - scan_len):
+                if self.is_palendrome(s[i:i + scan_len + 1]):
+                    return s[i:i + scan_len + 1]
+            scan_len -= 1
+
+    def is_palendrome(self, s):
+        if s:
+            return s == s[::-1]
+        else:
+            return False
