@@ -1,0 +1,15 @@
+#link to problem https://leetcode.com/problems/binary-gap/description/
+class Solution:
+    def binaryGap(self, n: int) -> int:
+        bin_n = bin(n)[2:]
+        dist,out = 0,0
+        print(bin_n)
+        for i in bin_n[1:]:
+            if i == '0':
+                dist += 1
+            else:
+                out = max(out, dist + 1)
+                dist = 0
+        if bin_n[-1] == '1':
+            out = max(out,dist)
+        return out
