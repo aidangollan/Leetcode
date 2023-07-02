@@ -1,0 +1,25 @@
+#link to problem https://leetcode.com/problems/median-of-two-sorted-arrays/description/
+class Solution:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        lens1, lens2 = len(nums1), len(nums2)
+        out = 0
+        mid = int(((lens1 + lens2) / 2))
+        even = (lens1 + lens2) % 2 == 0
+        loop1 = lens1 < lens2
+        #determine the shortest list
+        if loop1:
+            nums1 = loop(nums1,nums2)
+        else:
+            nums1 = loop(nums2,nums1)
+        if even:
+            out += nums1[mid - 1]
+            out += nums1[mid]
+            out = out/2
+        else:
+            out += nums1[mid]
+        return out
+
+def loop(numsa: List[int], numsb: List[int]) -> List[int]:
+        for i in numsa:
+            numsb.append(i)
+        return sorted(numsb)
