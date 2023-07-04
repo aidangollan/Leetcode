@@ -1,6 +1,6 @@
 #link to problem https://leetcode.com/problems/single-number-ii/description/
 class Solution:
-    def singleNumber(self, nums: List[int]) -> int:
+    def singleNumber(self, nums: List[int]) -> int
         nums_dict = {}
         for i in nums:
             try:
