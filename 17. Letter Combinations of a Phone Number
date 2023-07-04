@@ -1,0 +1,17 @@
+#link to problem https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        if not digits:
+            return []
+        comb_dict = {'2': "abc", '3': "def", '4': "ghi", '5': "jkl", '6': "mno", '7': "pqrs", '8': "tuv", '9': "wxyz"}
+        out = []
+        combos(out, digits, "", comb_dict)
+        return out
+
+def combos(out, digits, comb, comb_dict) -> List[str]:
+    if not digits:
+        out.append(comb)
+        return
+    
+    for letter in comb_dict[digits[0]]:
+        combos(out, digits[1:], comb + letter, comb_dict)
