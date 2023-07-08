@@ -1,0 +1,12 @@
+#link to problem https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/description/
+class Solution:
+    def minGroups(self, intervals: List[List[int]]) -> int:
+        dic = collections.defaultdict(int)
+        for li in intervals:
+            dic[li[0]] += 1
+            dic[li[1] + 1] -= 1
+        out, current = 0,0
+        for key, value in sorted(dic.items()):
+            current += value
+            out = max(current,out)
+        return out
