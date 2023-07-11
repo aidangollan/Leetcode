@@ -1,0 +1,9 @@
+#link to problem https://leetcode.com/problems/two-sum/description/
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        nums_dict = {}
+        for i, num in enumerate(nums):
+            if target - num in nums_dict.keys():
+                return [i,nums_dict[target - num]]
+            else:
+                nums_dict[num] = i
