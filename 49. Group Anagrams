@@ -1,0 +1,11 @@
+#link to problem https://leetcode.com/problems/group-anagrams/description/
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        out_dict = {}
+        for s in strs:
+            s_sort = ''.join(sorted(s))
+            if not out_dict or s_sort not in out_dict.keys():
+                out_dict[s_sort] = [s]
+            else:
+                out_dict[s_sort].append(s)
+        return list(out_dict.values())
