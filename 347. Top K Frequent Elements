@@ -1,0 +1,13 @@
+#link to problem https://leetcode.com/problems/top-k-frequent-elements/description/
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        nums_dict = Counter(nums)
+        li = [[] for _ in range(len(nums) + 1)]
+        out = []
+        for key, val in nums_dict.items():
+            li[val].append(key)
+        for i in reversed(li):
+            for j in i:
+                if len(out) < k:
+                    out.append(j)
+        return out
