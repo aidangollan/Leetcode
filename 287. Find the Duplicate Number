@@ -1,0 +1,13 @@
+#link to problem https://leetcode.com/problems/find-the-duplicate-number/submissions/
+class Solution:
+    def findDuplicate(self, nums: List[int]) -> int:
+        f,s,k = 0,0,0
+        first = True
+        while s != f or first:
+            first = False
+            s = nums[s]
+            f = nums[nums[f]]
+        while k != s:
+            k = nums[k]
+            s = nums[s]
+        return k
