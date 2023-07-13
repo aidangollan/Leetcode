@@ -1,0 +1,38 @@
+#link to problem https://leetcode.com/problems/valid-sudoku/description/
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        hor_dict = {0:[], 1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[]}
+        ver_dict = {0:[], 1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[]}
+        block_dict = {0:[], 1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[]}
+        out = 1
+        for i,li in enumerate(board):
+            for j,num in enumerate(li):
+                if num != '.':
+                    hor_dict[i].append(num)
+                    ver_dict[j].append(num)
+                    block_dict[calcSquare(i,j)].append(num)
+        out = min(out, dictCheck(hor_dict))
+        out = min(out, dictCheck(ver_dict))
+        out = min(out, dictCheck(block_dict))
+        
+        return bool(out)
+                
+def dictCheck(d) -> int:
+    for li in d.values():
+            if not checkLi(li):
+                return 0
+    return 1
+
+def calcSquare(i:int, j:int) -> int:
+    squares = [[0,1,2],[3,4,5],[6,7,8]]
+    return squares[i//3][j//3]
+
+def checkLi(li: List[str]) -> bool:
+    seen = set()
+    seen_num = 0
+    for i in li:
+        seen_num += 1
+        seen.add(i)
+        if seen_num != len(seen):
+            return False
+    return True
