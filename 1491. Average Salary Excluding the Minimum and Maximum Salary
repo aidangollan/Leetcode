@@ -1,0 +1,13 @@
+#link to problem https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/description/
+class Solution:
+    def average(self, salary: List[int]) -> float:
+        min_val = float('inf')
+        max_val = float('-inf')
+        total = 0
+
+        for num in salary:
+            min_val = min(min_val, num)
+            max_val = max(max_val, num)
+            total += num
+
+        return (total - min_val - max_val) / (len(salary) - 2)
