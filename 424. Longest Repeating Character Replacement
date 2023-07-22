@@ -1,0 +1,19 @@
+#link to problem https://leetcode.com/problems/longest-repeating-character-replacement/description/
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        seen = {}
+        l = 0
+        out = 0
+        count_max = 0
+        for r in range(len(s)):
+            sum_count = r - l + 1
+            seen[s[r]] = 1 + seen.get(s[r], 0)
+            count_max = max(seen[s[r]], count_max)
+
+            while k < (sum_count - count_max):
+                seen[s[l]] -= 1
+                l += 1
+                sum_count = r - l + 1
+
+            out = max(out, sum_count)
+        return out
