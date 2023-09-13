@@ -1,0 +1,30 @@
+# This is an input class. Do not edit.
+class LinkedList:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+
+def removeKthNodeFromEnd(head, k):
+    i = 0
+    cur = head
+    while i < k:
+        cur = cur.next
+        i += 1
+    tail = head
+   
+    while cur is not None and cur.next is not None:
+        cur = cur.next
+        tail = tail.next
+
+    if cur is None:
+        tail.value = tail.next.value
+    
+    tail.next = tail.next.next
+
+    return None
+
+'''
+  Write a function that takes in the head of a Singly Linked List and an intege and removes the kth node from the end of the list.
+  The removal should be done in place, meaning that the original data structure should be mutated (no new structure should be created).
+'''
