@@ -1,0 +1,26 @@
+# This is an input class. Do not edit.
+class LinkedList:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+
+def middleNode(linkedList):
+    #get the length
+    cur = linkedList
+    len = 0
+    while cur is not None:
+        len += 1
+        cur = cur.next
+    cur = linkedList
+    for _ in range(len // 2):
+        cur = cur.next
+
+    return cur
+
+'''
+You're given a Linked List with at least one node. Write a function
+    that returns the middle node of the Linked List. If there are two middle
+    nodes (i.e. an even length list), your function should return the second
+    of these nodes.
+ '''
