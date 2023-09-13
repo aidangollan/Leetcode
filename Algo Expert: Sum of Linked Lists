@@ -1,0 +1,42 @@
+# This is an input class. Do not edit.
+class LinkedList:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+
+def sumOfLinkedLists(linkedListOne, linkedListTwo):
+    l1_done = False
+    l2_done = False
+    i = 0
+    summ = 0
+    cur1 = linkedListOne
+    cur2 = linkedListTwo
+    while not(l1_done and l2_done):
+        if cur1 is not None and not l1_done:
+            summ += cur1.value * (10**i)
+            cur1 = cur1.next
+        else:
+            l1_done = True
+        if cur2 is not None and not l2_done:
+            summ += cur2.value * (10**i)
+            cur2 = cur2.next
+        else:
+            l2_done = True
+        i += 1
+    out = LinkedList(value=summ % 10)
+    head = out
+    while summ > 10:
+        summ = summ // 10
+        out.next = LinkedList(value=summ % 10)
+        out = out.next
+    return head
+
+'''
+You're given two Linked Lists of potentially unequal length. Each Linked List
+  represents a non-negative integer, where each node in the Linked List is a
+  digit of that integer, and the first node in each Linked List always
+  represents the least significant digit of the integer. Write a function that
+  returns the head of a new Linked List that represents the sum of the integers
+  represented by the two input Linked Lists.
+'''
