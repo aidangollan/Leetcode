@@ -1,0 +1,15 @@
+def tournamentWinner(competitions, results):
+    out = ""
+    names = {"":0}
+    seen = set()
+    for i,c in enumerate(competitions):
+        result = int(not bool(results[i]))
+        winner = c[result]
+        if winner in seen:
+            names[winner] += 3
+        else:
+            names[winner] = 3
+        seen.add(winner)
+        if names[winner] > names[out]:
+            out = winner
+    return out
