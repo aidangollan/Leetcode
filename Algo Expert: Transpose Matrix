@@ -1,0 +1,10 @@
+def transposeMatrix(matrix):
+    out = []
+    for _ in range(len(matrix[0])):
+        out.append([])
+
+    for i in range(len(matrix[0])):
+        for j in range(len(matrix)):
+            out[i].append(matrix[j][i])
+
+    return out
