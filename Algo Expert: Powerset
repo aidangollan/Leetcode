@@ -1,0 +1,11 @@
+def powerset(array):
+    out = [[]]
+
+    for num in array:
+        out_len = len(out)
+        i = 0
+        while i < out_len:
+            out.append(out[i] + [num])
+            i += 1
+
+    return out
