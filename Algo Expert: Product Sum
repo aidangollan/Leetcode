@@ -1,0 +1,13 @@
+# Tip: You can use the type(element) function to check whether an item
+# is a list or an integer.
+def productSum(array):
+    def _helpSum(array, depth):
+        sum = 0
+        for elem in array:
+            if type(elem) != list:
+                sum += elem * depth
+            else:
+                sum += _helpSum(elem, depth + 1) * depth
+        return sum
+    sum = _helpSum(array, depth=1)
+    return sum
