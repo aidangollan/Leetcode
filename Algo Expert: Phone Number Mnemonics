@@ -1,0 +1,17 @@
+def phoneNumberMnemonics(phoneNumber):
+    # Write your code here.
+    def _phoneHelper(comb, remNums):
+        if not remNums:
+            combs.append(comb)
+            return
+
+        curNum = remNums[0]
+        remNums = remNums[1:]
+        for letter in numsToLetters[curNum]:
+            _phoneHelper(comb + letter, remNums)
+
+    
+    combs = []
+    numsToLetters = {"0":"0", "1":"1", "2":"abc", "3":"def", "4":"ghi", "5":"jkl", "6":"mno", "7":"pqrs", "8":"tuv", "9":"wxyz"}
+    _phoneHelper("",phoneNumber)
+    return combs
