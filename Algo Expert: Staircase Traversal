@@ -1,0 +1,13 @@
+def staircaseTraversal(height, maxSteps):
+    def _helperStairs(cur_height):
+        combs = 0
+        if cur_height > height:
+            return 0
+        elif cur_height == height:
+            return 1
+        else:
+            for step in range(1,maxSteps + 1):
+                combs += _helperStairs(cur_height + step)
+        return combs
+    combs = _helperStairs(0)
+    return combs
