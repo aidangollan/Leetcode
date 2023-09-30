@@ -1,0 +1,17 @@
+def blackjackProbability(target, startingHand):
+    def _blackjackHelp(target, curHand, memo):
+        if curHand in memo:
+            return memo[curHand]
+        if curHand > target:
+            return 1
+        elif curHand >= target - 4:
+            return 0
+        prop = 0
+        for i in range(1,11):
+            prop += .1 * _blackjackHelp(target, curHand + i, memo)
+        memo[curHand] = prop
+        return prop
+        
+    memo = {}
+    prop = _blackjackHelp(target, startingHand, memo)
+    return round(prop, 3)
