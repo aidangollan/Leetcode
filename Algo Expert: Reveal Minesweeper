@@ -1,0 +1,28 @@
+def revealMinesweeper(board, row, col):
+    if board[row][col] == "M":
+        board[row][col] = "X"
+        return board
+    mines = checkMines(board, row, col)
+    board[row][col] = str(mines)
+
+    if mines == 0:
+        for new_row in range(row - 1, row + 2):
+            for new_col in range(col - 1, col + 2):
+                if boundCheck(board, new_row, new_col):
+                    if board[new_row][new_col] == "H":
+                        revealMinesweeper(board, new_row, new_col)
+                        
+    return board
+
+def boundCheck(board, row, col):
+    max_row = len(board) - 1
+    max_col = len(board[0]) - 1
+    return row >= 0 and col >= 0 and row <= max_row and col <= max_col
+
+def checkMines(board, row, col):
+    mines = 0
+    for new_row in range(row - 1, row + 2):
+        for new_col in range(col - 1, col + 2):
+            if boundCheck(board, new_row, new_col):
+                mines += board[new_row][new_col] == "M"
+    return mines
