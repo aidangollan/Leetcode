@@ -1,0 +1,22 @@
+def interweavingStrings(one, two, three):
+    i, j, k = 0, 0, 0
+    memo = {}
+    return helperStrings(one, two, three, i, j, k, memo)
+
+def helperStrings(one, two, three, i, j, k, memo):
+    if (i,j,k) in memo:
+        return memo[(i,j,k)]
+    out = 0
+    while k < len(three):
+        if i < len(one) and j < len(two) and three[k] == one[i] and three[k] == two[j]:
+            memo[(i+1, j, k+1)] = helperStrings(one, two, three, i + 1, j, k + 1, memo)
+            memo[(i, j+1, k+1)] = helperStrings(one, two, three, i, j + 1, k + 1, memo)
+            return memo[(i+1, j, k+1)] or memo[(i, j+1, k+1)]
+        elif i < len(one) and three[k] == one[i]:
+            i += 1
+        elif j < len(two) and three[k] == two[j]:
+            j += 1
+        else:
+            return False
+        k += 1
+    return i == len(one) and j == len(two)
