@@ -1,0 +1,8 @@
+def minimumWaitingTime(queries):
+    queries.sort()
+    curSum = 0
+    out = 0
+    for time in queries:
+        out += curSum
+        curSum += time
+    return out
