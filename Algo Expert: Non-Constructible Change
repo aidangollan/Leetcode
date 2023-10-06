@@ -1,0 +1,10 @@
+def nonConstructibleChange(coins):
+    coins.sort()
+    if not coins:
+        return 1
+    sum = 0
+    for num in coins:
+        if num > sum + 1:
+            break
+        sum += num
+    return sum + 1
