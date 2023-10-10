@@ -1,0 +1,23 @@
+def smallestDifference(arrayOne, arrayTwo):
+    arrayComb = []
+    minDiff = abs(arrayOne[0] - arrayTwo[0])
+    for num in arrayOne:
+        arrayComb.append((num, "One"))
+    for num in arrayTwo:
+        arrayComb.append((num, "Two"))
+
+    arrayComb.sort()
+
+    i, j = 0, 1
+    
+    while j < len(arrayComb):
+        diff = abs(arrayComb[i][0] - arrayComb[j][0])
+        if diff < minDiff and arrayComb[i][1] != arrayComb[j][1]:
+            if arrayComb[i][1] == "One":
+                out = [i,j]
+            else:
+                out = [j,i]
+            minDiff = diff
+        i += 1
+        j += 1
+    return [arrayComb[out[0]][0], arrayComb[out[1]][0]] 
