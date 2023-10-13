@@ -1,0 +1,23 @@
+def isMonotonic(array):
+
+    if len(array) < 2:
+        return True
+
+    i, j, = 0, 1
+    
+    while j < len(array) - 1 and array[i] == array[j]:
+        i += 1
+        j += 1
+
+    increasing = array[i] < array[j]
+
+    while j < len(array):
+        
+        if increasing and array[i] > array[j]:
+            return False
+        elif not increasing and array[i] < array[j]:
+            return False
+        i += 1
+        j += 1
+
+    return True
