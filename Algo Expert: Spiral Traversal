@@ -1,0 +1,45 @@
+def spiralTraverse(array):
+    Lbound, Tbound = 0, 0
+    Rbound, Bbound = len(array[0]) - 1, len(array) - 1
+    x, y = 0, 0
+    out = []
+
+    while Lbound <= Rbound and Tbound <= Bbound:
+        while x < Rbound:
+            out.append(array[y][x])
+            x += 1
+            
+        Tbound += 1
+
+        if Tbound > Bbound:
+            break
+
+        while y < Bbound:
+            out.append(array[y][x])
+            y += 1
+
+        Rbound -= 1
+
+        if Lbound > Rbound:
+            break
+
+        while x > Lbound:
+            out.append(array[y][x])
+            x -= 1
+
+        Bbound -= 1
+
+        if Tbound > Bbound:
+            break
+
+        while y > Tbound:
+            out.append(array[y][x])
+            y -= 1
+
+        Lbound += 1
+
+        if Lbound > Rbound:
+            break
+
+    out.append(array[y][x])
+    return out
