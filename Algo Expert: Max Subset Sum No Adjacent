@@ -1,0 +1,62 @@
+Solution 1: O(n^2) time, O(n) space
+def maxSubsetSumNoAdjacent(array):
+    if not array:
+        return 0
+    elif len(array) == 1:
+        return array[0]
+
+    sum1 = array[0]
+    sum2 = array[1]
+    seen = {}
+        
+    for i in range(2, len(array)):
+        sum1 = max(array[0] + help(i, array, seen), sum1)
+
+    for j in range(3, len(array)):
+        sum2 = max(array[1] + help(j, array, seen), sum2)
+
+    return max(sum1, sum2)
+
+def help(start, array, seen):
+    if start in seen:
+        return seen[start]
+    most = 0
+    i = start
+    while i < len(array):
+        most = max(array[start] + help(i + 2, array, seen), most)
+        i += 1
+
+    seen[start] = most
+
+    return most
+    
+Solution 2: O(n) time, O(n) space
+def maxSubsetSumNoAdjacent(array):
+    if not array:
+        return 0
+    elif len(array) == 1:
+        return array[0]
+    
+    maxSums = [0] * len(array)
+
+    maxSums[0] = array[0]
+    maxSums[1] = max(array[0], array[1])
+
+    for i in range(2, len(array)):
+        maxSums[i] = max(array[i] + maxSums[i - 2], maxSums[i - 1])
+        
+    return maxSums[-1]
+
+Solution 3: O(n) time, O(1) space
+def maxSubsetSumNoAdjacent(array):
+    if not array:
+        return 0
+    elif len(array) == 1:
+        return array[0]
+
+    array[1] = max(array[0], array[1])
+
+    for i in range(2, len(array)):
+        array[i] = max(array[i] + array[i - 2], array[i - 1])
+        
+    return array[-1]
