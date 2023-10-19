@@ -1,0 +1,11 @@
+def minNumberOfCoinsForChange(n, denoms):
+    nums = [float("inf")] * (n + 1)
+    nums[0] = 0
+
+    for denom in denoms:
+        for num in range(denom, n + 1):
+            num_left = num - denom
+            num_denom = 1 + nums[num_left]
+            nums[num] = min(nums[num], num_denom)
+
+    return nums[-1] if nums[-1] != float("inf") else -1
