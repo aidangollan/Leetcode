@@ -1,0 +1,9 @@
+def numberOfWaysToMakeChange(n, denoms):
+    nums = [0] * (n + 1)
+    nums[0] = 1
+
+    for denom in denoms:
+        for num in range(denom, n + 1):
+            nums[num] += nums[num - denom]
+
+    return nums[-1]
