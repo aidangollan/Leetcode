@@ -1,0 +1,18 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        outDict = {}
+
+        for strr in strs:
+            strrSorted = sorted(strr)
+            strrSorted = ''.join(strrSorted)
+            
+            if strrSorted not in outDict:
+                outDict[strrSorted] = [strr]
+            else:
+                outDict[strrSorted].append(strr)
+        
+        out = []
+        for li in outDict.values():
+            out.append(li)
+        
+        return out
