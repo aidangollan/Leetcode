@@ -1,0 +1,19 @@
+def mergeOverlappingIntervals(intervals):
+    intervals.sort()
+    
+    cur_idx = 0
+    out = []
+    
+    while cur_idx < len(intervals):
+        cur_arr = intervals[cur_idx]
+
+        while cur_idx < len(intervals) - 1 and cur_arr[1] >= intervals[cur_idx + 1][0]:
+            if cur_arr[1] < intervals[cur_idx + 1][1]:
+                cur_arr[1] = intervals[cur_idx + 1][1]
+                
+            cur_idx += 1
+
+        out.append(cur_arr)
+        cur_idx += 1
+
+    return out
