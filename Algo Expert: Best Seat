@@ -1,0 +1,24 @@
+def bestSeat(seats):
+    l, r = 0, 1
+    max_count = 0
+    best_seat = 0
+
+    while r < len(seats):
+        cur_count = 0
+        
+        #no need to bound check, first and last are 1
+        while seats[r] == 0:
+            cur_count += 1
+            r += 1
+
+        if cur_count > max_count:
+            best_seat = (r + l) // 2
+            max_count = cur_count
+
+        l = r
+        r += 1
+
+    if max_count != 0:
+        return best_seat
+    else:
+        return -1
