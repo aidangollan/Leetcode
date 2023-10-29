@@ -1,0 +1,18 @@
+def arrayOfProducts(array):
+    rhs = [1] * len(array)
+    lhs = [1] * len(array)
+    out = []
+
+    #calculte left side product
+    for i in range(0, len(array) - 1):
+        lhs[i + 1] = lhs[i] * array[i]
+
+    #calculate ride side product
+    for i in range(len(array) - 1, 0, -1):
+        rhs[i - 1] = rhs[i] * array[i]
+
+    #combine them
+    for i in range(len(array)):
+        out.append(lhs[i] * rhs[i])
+
+    return out
