@@ -1,0 +1,11 @@
+def missingNumbers(nums):
+    nums_set = set()
+    for num in range(1, len(nums) + 3):
+        nums_set.add(num)
+
+    for num in nums:
+        nums_set.remove(num)
+
+    out = list(nums_set)
+
+    return out
