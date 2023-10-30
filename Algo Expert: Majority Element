@@ -1,0 +1,13 @@
+def majorityElement(array):
+    vote = 0
+    winner = ""
+    for elem in array:
+        if vote == 0:
+            vote += 1
+            winner = elem
+        elif elem != winner:
+            vote -= 1
+        else:
+            vote += 1
+
+    return winner
