@@ -1,0 +1,8 @@
+def hasSingleCycle(array):
+    i = 0
+    seen_idx = set()
+    for _ in range(len(array)):
+        seen_idx.add(i)
+        i += array[i]
+        i = i % len(array)
+    return len(seen_idx) == len(array) and i == 0
