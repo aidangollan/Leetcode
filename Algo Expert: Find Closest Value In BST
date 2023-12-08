@@ -1,0 +1,8 @@
+def findClosestValueInBst(tree, target, smallest=float("inf")):
+    smallest = smallest if abs(smallest - target) < abs(tree.value - target) else tree.value
+    if target < tree.value and tree.left is not None:
+        return findClosestValueInBst(tree.left, target, smallest)
+    elif target > tree.value and tree.right is not None:
+        return findClosestValueInBst(tree.right, target, smallest)
+    else:
+        return smallest
