@@ -1,0 +1,34 @@
+# This is an input class. Do not edit.
+class BST:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+
+def validateBst(tree):
+    """
+    # go through each node, keeping track of max and min val
+    # if tree.val >= max or < min, return 1
+    # else return helper(tree.left), helper(tree.right)
+    # if going left, do sum += helper(l, min, min(tree.val, max))
+    # if going right, do sum += helper(r, max(tree.val, min), max)
+    # return sum
+    """
+    def helper(tree, minn, maxx):
+        if tree.value >= maxx or tree.value < minn:
+            return 1
+
+        sum = 0
+
+        if tree.left is not None:
+            sum += helper(tree.left, minn, min(maxx, tree.value))
+
+        if tree.right is not None:
+            sum += helper(tree.right, max(minn, tree.value), maxx)
+
+        return sum
+
+    out = helper(tree, float("-inf"), float("inf"))
+    return out == 0
+    
