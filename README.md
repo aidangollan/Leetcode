@@ -1,4 +1,4 @@
-Problems Complete: 78
+Problems Complete: 79
 Easy: 32
-Medium: 42
+Medium: 43
 Hard: 4
