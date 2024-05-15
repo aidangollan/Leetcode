@@ -1,0 +1,17 @@
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        candidates.sort()
+        return self.combHelper(candidates, target, [])
+
+    def combHelper(self, candidates: List[int], target: int, curNums: List[int]) -> List[List[int]]:
+        combs = set()
+        for num in candidates:
+            if target - num == 0:
+                combs.add(tuple(sorted(curNums + [num])))
+                break
+            elif target - num < 0:
+                break
+            else:
+                combs.update(self.combHelper(candidates, target - num, curNums + [num]))
+        
+        return combs
