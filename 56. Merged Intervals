@@ -1,0 +1,20 @@
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        intervals.sort()
+        
+        i, j = 0, 1
+        out = []
+
+        while i < len(intervals):
+            cur = [intervals[i][0], intervals[i][1]]
+
+            while j < len(intervals) and cur[1] >= intervals[j][0]:
+                cur = [intervals[i][0], max(cur[1], intervals[j][1])]
+                j += 1
+            
+            out.append(cur)
+            
+            i = j
+            j += 1
+        
+        return out
