@@ -1,0 +1,22 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        out = []
+
+        allStringsMap = {}
+
+        for string in strs:
+            stringMap = [0] * 26
+            for letter in string:
+                stringMap[ord(letter) - ord('a')] += 1
+            
+            stringMap = tuple(stringMap)
+            
+            if stringMap in allStringsMap:
+                allStringsMap[stringMap].append(string)
+            else:
+                allStringsMap[stringMap] = [string]
+        
+        for value in allStringsMap.values():
+            out.append(value)
+        
+        return out
