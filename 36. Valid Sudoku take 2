@@ -1,0 +1,24 @@
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        seenRow = [set() for _ in range(9)] 
+        seenCol = [set() for _ in range(9)] 
+        seenSquare = [set() for _ in range(9)]
+
+        for i, row in enumerate(board):
+            for j, num in enumerate(row):
+                squareNum = (j // 3) + ((i // 3) * 3)
+
+                if num == ".":
+                    continue
+                elif num in seenRow[i]:
+                    return False
+                elif num in seenCol[j]:
+                    return False
+                elif num in seenSquare[squareNum]:
+                    return False
+                
+                seenRow[i].add(num)
+                seenCol[j].add(num)
+                seenSquare[squareNum].add(num)
+
+        return True
