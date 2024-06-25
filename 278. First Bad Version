@@ -1,0 +1,21 @@
+# The isBadVersion API is already defined for you.
+# def isBadVersion(version: int) -> bool:
+
+class Solution:
+    def firstBadVersion(self, n: int) -> int:
+        i, j = 1, n
+        largestGood = 0
+
+        while i <= j:
+            k = (i + j) // 2
+            isBad = isBadVersion(k)
+
+            if isBad and k == largestGood + 1:
+                return k
+            elif isBad:
+                j = k - 1
+            else:
+                largestGood = max(largestGood, k)
+                i = k + 1
+
+        return largestGood + 1
